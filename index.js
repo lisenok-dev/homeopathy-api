@@ -19,6 +19,18 @@ app.get('/api/ASO/parse', async (req, res) => {
   }
 });
 
+app.get('/api/ASO/article', async (req, res) => {
+  const url = req.query.url;
+  if (!url) return res.status(400).json({ error: "Missing url parameter" });
+
+  try {
+    const response = await axios.get(`http://homeopathy.runasp.net/api/ASO/article?url=${encodeURIComponent(url)}`);
+    res.json(response.data);
+  } catch (err) {
+    res.status(500).json({ error: "Failed to fetch from external API" });
+  }
+});
+
 app.listen(PORT, () => {
   console.log(`API running on port ${PORT}`);
 });
