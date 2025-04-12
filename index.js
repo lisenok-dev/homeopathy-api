@@ -7,7 +7,7 @@ const PORT = process.env.PORT || 3000;
 
 app.use(cors());
 
-app.get('/api/parse', async (req, res) => {
+app.get('/api/ASO/parse', async (req, res) => {
   const input = req.query.input;
   if (!input) return res.status(400).json({ error: "Missing input parameter" });
 
