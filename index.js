@@ -31,6 +31,15 @@
     }
   });
 
+  app.get('/api/ASO/loading', async (req, res) => {
+    try {
+      const response = await axios.get(`http://homeopathy.runasp.net/api/ASO/loading`);
+      res.send(response);
+    } catch (err) {
+      res.status(500).json({ error: "Failed to fetch from external API" });
+    }
+  });
+
   app.listen(PORT, () => {
     console.log(`API running on port ${PORT}`);
   });
